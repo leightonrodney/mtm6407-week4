@@ -1,0 +1,55 @@
+@use 'sass:color';
+@use 'typography';
+@use 'colors' as *;
+@use 'variables';
+
+// Links
+a {
+    text-decoration: underline;
+    color: map-get($themes, "primary");
+
+    &:hover {
+        text-decoration: none;
+        color: color.scale(map-get($themes, "primary"), $lightness: -45%);
+    }
+}
+
+// Buttons
+
+@mixin btn-primary ($bg-color: map-get($themes, "primary"), $text-color: map-get($themes, "white")) {
+    background-color: $bg-color;
+    border: none;
+    border-radius: 4px;
+    display: inline-block;
+    color: $text-color;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 5px 15px;
+    transition: 0.4s;
+
+    &:hover {
+        background-color: color.scale($bg-color, $lightness: -15%);
+        transition: 0.2s;
+        color: $text-color;
+    }
+}
+
+.btn {
+    @include btn-primary;
+}
+
+.btn-error {
+    @include btn-primary($bg-color: map-get($themes, "error"));
+}
+
+.btn-success {
+    @include btn-primary($bg-color: map-get($themes, "success"));
+}
+
+.btn-info {
+    @include btn-primary($bg-color: map-get($themes, "info"), $text-color: map-get($themes, "dark"));
+}
+
+
+
+
